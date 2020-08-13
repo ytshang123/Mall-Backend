@@ -1,0 +1,35 @@
+//plugins {
+//    id 'org.springframework.boot' version '2.0.3.RELEASE'
+//}
+buildscript {
+    repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE"
+    }
+}
+apply plugin: "org.springframework.boot"
+
+group 'project.linkortech.test'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    maven{ url 'http://www.linkortech.com:10001/repository/maven-releases/'}
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.springframework.boot',name: 'spring-boot-starter-test'
+    compile group: 'mizuki.project.rest.core', name: 'rest-core-main', version: '0.2.1'
+
+    compile fileTree(dir: 'exlibs', include: ['*.jar'])
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+    compile group: 'org.apache.poi', name: 'poi', version: '4.0.0'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.0'
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.6'
+}

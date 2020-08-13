@@ -1,0 +1,52 @@
+
+var:
+  server: 47.96.160.63
+  appName: lkt-test
+
+server:
+  port: 9001
+  servlet:
+    context-path:
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: ${var.appName}
+  main:
+    web-application-type: servlet
+  jackson:
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 200MB
+      resolve-lazily: true
+
+logging:
+  file: /root/${var.appName}/console.log
+
+project:
+  projectPath: /root/${var.appName}
+
+mybatis:
+  mysql1:
+    url: jdbc:mysql://127.0.0.1:3306/mall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+
+---
+spring:
+  profiles: dev
+  application:
+    name: ${var.appName}-dev
+
+logging:
+  file: /Users/ycj/temp/${var.appName}/console.log
+  level:
+    project.linkortech: debug
+
+project:
+  projectPath: F:/final/test
